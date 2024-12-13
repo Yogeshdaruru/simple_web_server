@@ -21,105 +21,64 @@ Serving the HTML pages.
 Testing the webserver.
 
 # PROGRAM:
-```from http.server import HTTPServer, BaseHTTPRequestHandler
+```
+from http.server import HTTPServer,BaseHTTPRequestHandler
 
-content = """
-<!DOCTYPE html>
+content='''
+<!doctype html>
 <html>
 <head>
-    <title>Device Specifications</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color:cornflowerblue;
-        }
-        table {
-            width: 60%;
-            border-collapse: collapse;
-            margin: 20px auto;
-            background: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color:crimson;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        caption {
-            font-size: 20px;
-            font-weight: bold;
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
+<title> My Web Server</title>
 </head>
 <body>
-    <table>
-        <caption>Device Specifications</caption>
+    <table border="5">
         <tr>
-            <th>Specification</th>
-            <th>Details</th>
-        </tr>
-        <tr>
-            <td>Device Name</td>
-            <td>Gokul</td>
+            <th>Configuration</th>
+            <th>Description</th>
         </tr>
         <tr>
             <td>Processor</td>
-            <td>13th Gen Intel(R) Core(TM) i5-1335U 1.30GHz</td>
+            <td>13th intel(R) core(TM) i5-1335U, 1300Mhz, 10 Core(s), 12 Logical Processor</td>
+        </tr>
+        <tr><td>Storage(HDD/SSD)</td><td>SAMSUNG MZAL4512HBLU-00BL1</td></tr>
+        <tr>
+            <td>Memory</td><td>8.5 GB</td>
         </tr>
         <tr>
-            <td>Installed RAM</td>
-            <td>16.0 GB (15.7 GB usable)</td>
+            <td>Graphics Card</td>
+            <td>
+                Intel(R) Iris(R) Xe Graphics , 
+                NVIDIA GeForce MX550
+            </td>
         </tr>
         <tr>
-            <td>Device ID</td>
-            <td>15EEA3B2-7EF5-4DEC-903D-577382C3C005</td>
+            <td>Operating System</td><td>Edition:Windows , Version:22H2 , OS build:22621.4169</td>
         </tr>
         <tr>
-            <td>Product ID</td>
-            <td>00342-42708-98285-AAOEM</td>
-        </tr>
-        <tr>
-            <td>System Type</td>
-            <td>64-bit operating system, x64-based processor</td>
-        </tr>
-        <tr>
-            <td>Pen and Touch</td>
-            <td>No pen or touch input is available for this display</td>
-        </tr>
+            <td>RAM</td><td>16.0 GB</td></tr>
+        
     </table>
 </body>
 </html>
+'''
 
-"""
-
-class MyHandler(BaseHTTPRequestHandler):
+class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("Request received")
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html; charset=utf-8')
+        print("Get request received...")
+        self.send_response(200) 
+        self.send_header("content-type", "text/html")       
         self.end_headers()
         self.wfile.write(content.encode())
 
-server_address = ('', 8000)
-httpd = HTTPServer(server_address, MyHandler)
-print("My webserver is running...")
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
 httpd.serve_forever()
+
 ```
+
 # OUTPUT:
-![serveroutput (1)](https://github.com/user-attachments/assets/8bc80c68-1a6a-4fa2-942d-34b651d7a596)
+
 
 # RESULT:
 The program for implementing simple webserver is executed successfully.
